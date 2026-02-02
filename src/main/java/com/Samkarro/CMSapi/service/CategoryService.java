@@ -18,4 +18,9 @@ public class CategoryService {
     public List<Category> ListCategories(){
         return this.repository.findAll();
     }
+
+    public Category Create(Category category) {
+        System.out.println(category);
+        return this.repository.save(category);
+    }
 }

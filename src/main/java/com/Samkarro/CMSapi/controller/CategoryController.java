@@ -2,10 +2,7 @@ package com.Samkarro.CMSapi.controller;
 
 import com.Samkarro.CMSapi.model.Category;
 import com.Samkarro.CMSapi.service.CategoryService;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -20,9 +17,13 @@ public class CategoryController {
         this.service = service;
     }
 
-    @GetMapping("/")
+    @GetMapping
     public List<Category> ListCategories(){
         return this.service.ListCategories();
     }
 
+    @PostMapping
+    public Category Create(@RequestBody Category category){
+        return this.service.Create(category);
+    }
 }
