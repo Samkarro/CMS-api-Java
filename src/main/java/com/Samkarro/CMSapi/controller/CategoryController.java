@@ -26,4 +26,9 @@ public class CategoryController {
     public Category Create(@RequestBody Category category){
         return this.service.Create(category);
     }
+
+    @DeleteMapping("/{id}")
+    public void Delete(@PathVariable int id){
+        this.service.Delete(id);
+    }
 }
