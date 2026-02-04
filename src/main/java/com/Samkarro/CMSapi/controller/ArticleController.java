@@ -32,4 +32,9 @@ public class ArticleController {
     public Article Create(@RequestBody Article article){
         return this.service.Create(article);
     }
+
+    @DeleteMapping("/{id}")
+    public void Delete(@PathVariable int id) {
+        this.service.Delete(id);
+    }
 }

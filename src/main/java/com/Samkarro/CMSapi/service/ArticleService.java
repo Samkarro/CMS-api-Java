@@ -54,4 +54,8 @@ public class ArticleService {
         if(returnedArticle != null) return returnedArticle;
         else throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Article with given ID not found");
     }
+
+    public void Delete(int id) {
+        this.articleRepo.deleteById(id);
+    }
 }
