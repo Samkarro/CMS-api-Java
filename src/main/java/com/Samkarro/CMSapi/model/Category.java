@@ -2,34 +2,39 @@ package com.Samkarro.CMSapi.model;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
+
+import java.util.HashSet;
+import java.util.Set;
 
 @Data
 @Entity
-@Table
+@Table(name = "category")
 public class Category {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private int categoryId;
     private String name;
 
     @JsonCreator
     public Category(){}
 
-    public Category(int id, String name) {
-        this.id = id;
+    public Category(int categoryId, String name) {
+        this.categoryId = categoryId;
         this.name = name;
     }
 
-    public int getId() {
-        return id;
+    public Category(String name) {
+        this.name = name;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public int getCategoryId() {
+        return categoryId;
+    }
+
+    public void setCategoryId(int categoryId) {
+        this.categoryId = categoryId;
     }
 
     public String getName() {
