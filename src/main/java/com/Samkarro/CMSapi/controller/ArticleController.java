@@ -23,6 +23,11 @@ public class ArticleController {
         return this.service.ListArticles();
     }
 
+    @GetMapping("/{id}")
+    public Article GetById(@PathVariable int id) {
+        return this.service.GetById(id);
+    }
+
     @PostMapping
     public Article Create(@RequestBody Article article){
         return this.service.Create(article);

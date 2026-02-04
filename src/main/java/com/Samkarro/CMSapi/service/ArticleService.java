@@ -4,7 +4,9 @@ import com.Samkarro.CMSapi.model.Article;
 import com.Samkarro.CMSapi.model.Category;
 import com.Samkarro.CMSapi.repository.ArticleRepository;
 import com.Samkarro.CMSapi.repository.CategoryRepository;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.HashSet;
 import java.util.List;
@@ -44,5 +46,12 @@ public class ArticleService {
         article.setCategories(resolvedCategories);
 
         return articleRepo.save(article);
+    }
+
+    public Article GetById(int id) {
+        var returnedArticle = this.articleRepo.findById(id).orElse(null);
+
+        if(returnedArticle != null) return returnedArticle;
+        else throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Article with given ID not found");
     }
 }
