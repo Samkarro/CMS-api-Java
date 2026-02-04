@@ -58,4 +58,31 @@ public class ArticleService {
     public void Delete(int id) {
         this.articleRepo.deleteById(id);
     }
+
+    public Article Update(Article updatedArticle, int id) {
+        var existingArticle = this.articleRepo.findById(id).orElse(null);
+
+        if(existingArticle == null){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Article to update with given ID not found");
+        }
+
+        Set<Category> resolvedCategories = new HashSet<>();
+
+        for (Category incoming : updatedArticle.getCategories()) {
+
+            Category managedCategory = categoryRepo
+                    .findByName(incoming.getName())
+                    .orElseGet(() ->
+                            categoryRepo.save(new Category(incoming.getName()))
+                    );
+
+            resolvedCategories.add(managedCategory);
+        }
+
+        existingArticle.setCategories(resolvedCategories);
+        existingArticle.setBody(updatedArticle.getBody());
+        existingArticle.setTitle(updatedArticle.getTitle());
+
+        return articleRepo.save(existingArticle);
+    }
 }

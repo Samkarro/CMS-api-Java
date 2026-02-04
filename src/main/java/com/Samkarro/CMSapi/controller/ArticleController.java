@@ -33,6 +33,11 @@ public class ArticleController {
         return this.service.Create(article);
     }
 
+    @PutMapping("/{id}")
+    public Article Update(@RequestBody Article articleUpdate, @PathVariable int id){
+        return this.service.Update(articleUpdate, id);
+    }
+
     @DeleteMapping("/{id}")
     public void Delete(@PathVariable int id) {
         this.service.Delete(id);
