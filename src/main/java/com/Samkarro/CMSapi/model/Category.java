@@ -14,33 +14,27 @@ public class Category {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int articleId;
+    private int categoryId;
     private String name;
-    @ManyToMany(mappedBy = "categories")
-    private Set<Article> articles = new HashSet<>();
-
-    public Set<Article> getArticles() {
-        return articles;
-    }
-
-    public void setArticles(Set<Article> articles) {
-        this.articles = articles;
-    }
 
     @JsonCreator
     public Category(){}
 
-    public Category(int articleId, String name) {
-        this.articleId = articleId;
+    public Category(int categoryId, String name) {
+        this.categoryId = categoryId;
         this.name = name;
     }
 
-    public int getArticleId() {
-        return articleId;
+    public Category(String name) {
+        this.name = name;
     }
 
-    public void setArticleId(int articleId) {
-        this.articleId = articleId;
+    public int getCategoryId() {
+        return categoryId;
+    }
+
+    public void setCategoryId(int categoryId) {
+        this.categoryId = categoryId;
     }
 
     public String getName() {

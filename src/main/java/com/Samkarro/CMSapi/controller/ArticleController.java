@@ -1,9 +1,11 @@
 package com.Samkarro.CMSapi.controller;
 
+import com.Samkarro.CMSapi.common.DTO.ArticleResponse;
+import com.Samkarro.CMSapi.model.Article;
 import com.Samkarro.CMSapi.service.ArticleService;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @CrossOrigin
@@ -14,5 +16,15 @@ public class ArticleController {
 
     public ArticleController(ArticleService service) {
         this.service = service;
+    }
+
+    @GetMapping
+    public List<Article> ListArticles(){
+        return this.service.ListArticles();
+    }
+
+    @PostMapping
+    public Article Create(@RequestBody Article article){
+        return this.service.Create(article);
     }
 }

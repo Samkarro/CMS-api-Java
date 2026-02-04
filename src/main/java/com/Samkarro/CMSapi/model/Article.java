@@ -18,7 +18,7 @@ public class Article {
     private String title;
     @Lob
     private String body;
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany
             @JoinTable(
                     name = "article_category_ownership",
                     joinColumns = {@JoinColumn(name = "article_id")},
